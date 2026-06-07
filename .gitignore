@@ -1,0 +1,15 @@
+__pycache__/
+*.pyc
+
+.env
+
+venv/
+.venv/
+
+node_modules/
+
+data/raw_docs/*
+data/processed_docs/*
+data/embeddings/*
+
+*.pdf
