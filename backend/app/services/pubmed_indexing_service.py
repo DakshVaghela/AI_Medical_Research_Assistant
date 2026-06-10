@@ -7,7 +7,9 @@ from app.services.pubmed_parser_service import (
     parse_pubmed_xml
 )
 
-from app.services.document_chunking_service import create_chunks
+from app.services.document_chunking_service import (
+    create_chunks
+)
 
 from app.services.embedding_service import (
     generate_embeddings
@@ -20,23 +22,35 @@ from app.services.qdrant_service import (
 
 def index_pubmed_topic(
     topic: str,
-    max_papers: int = 20
+    max_papers: int = 100
 ):
 
-    ids = search_pubmed(
-        topic,
+    print(
+        f"Searching PubMed for: {topic}"
+    )
+
+    pmids = search_pubmed(
+        query=topic,
         max_results=max_papers
     )
 
-    xml = fetch_pubmed_details(ids)
+    print(
+        f"Found {len(pmids)} papers"
+    )
 
-    papers = parse_pubmed_xml(xml)
+    xml_data = fetch_pubmed_details(
+        pmids
+    )
+
+    papers = parse_pubmed_xml(
+        xml_data
+    )
 
     total_chunks = 0
 
     for paper in papers:
 
-        content = f"""
+        text = f"""
 Title:
 {paper['title']}
 
@@ -44,7 +58,9 @@ Abstract:
 {paper['abstract']}
 """
 
-        chunks = create_chunks(content)
+        chunks = create_chunks(
+            text
+        )
 
         embeddings = generate_embeddings(
             chunks
@@ -58,6 +74,7 @@ Abstract:
         total_chunks += len(chunks)
 
     return {
-        "papers": len(papers),
-        "chunks": total_chunks
+        "topic": topic,
+        "papers_indexed": len(papers),
+        "chunks_indexed": total_chunks
     }

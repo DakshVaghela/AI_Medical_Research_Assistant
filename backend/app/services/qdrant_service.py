@@ -173,6 +173,36 @@ def store_pubmed_embeddings(
         f"{len(points)} PubMed vectors stored"
     )
 
+def search_pubmed_qdrant(
+    query: str,
+    top_k: int = 5
+):
+
+    query_vector = model.encode(
+        query,
+        normalize_embeddings=True
+    ).tolist()
+
+    response = client.query_points(
+        collection_name="pubmed_documents",
+        query=query_vector,
+        limit=top_k
+    )
+
+    results = []
+
+    for point in response.points:
+
+        results.append({
+            "score": point.score,
+            "pmid": point.payload["pmid"],
+            "title": point.payload["title"],
+            "journal": point.payload["journal"],
+            "year": point.payload["year"],
+            "text": point.payload["text"]
+        })
+
+    return results
 
 def collection_info():
 

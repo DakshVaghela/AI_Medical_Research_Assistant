@@ -5,7 +5,9 @@ from app.services.qdrant_service import search_qdrant
 from app.services.document_indexing_service import (
     index_document
 )
-
+from app.services.pubmed_chat_service import (
+    chat_with_pubmed
+)
 from app.services.chat_service import (
     chat_with_documents
 )
@@ -88,3 +90,12 @@ def debug_search(query: str):
     )
 
     return results
+
+@app.get("/pubmed-chat")
+def pubmed_chat(
+    query: str
+):
+
+    return chat_with_pubmed(
+        query
+    )
