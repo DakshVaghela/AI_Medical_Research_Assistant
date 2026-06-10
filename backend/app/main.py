@@ -1,18 +1,21 @@
 from fastapi import FastAPI, UploadFile, File
 import shutil
 import os
-from app.services.qdrant_service import search_qdrant
+
 from app.services.document_indexing_service import (
     index_document
 )
+
+from app.services.document_chat_service import (
+    chat_with_document
+)
+
 from app.services.pubmed_chat_service import (
     chat_with_pubmed
 )
-from app.services.chat_service import (
-    chat_with_documents
-)
 
 from app.services.qdrant_service import (
+    search_uploaded_document,
     collection_info
 )
 
@@ -68,28 +71,10 @@ async def chat_document(
     query: str
 ):
 
-    result = chat_with_documents(
-        query=query,
+    return chat_with_document(
+        query=query
     )
 
-    return result
-
-
-@app.get("/collection-info")
-def get_collection_info():
-
-    return collection_info()
-
-
-@app.get("/debug-search")
-def debug_search(query: str):
-
-    results = search_qdrant(
-        query=query,
-        top_k=20
-    )
-
-    return results
 
 @app.get("/pubmed-chat")
 def pubmed_chat(
@@ -97,5 +82,22 @@ def pubmed_chat(
 ):
 
     return chat_with_pubmed(
-        query
+        query=query
     )
+
+
+@app.get("/debug-search")
+def debug_search(
+    query: str
+):
+
+    return search_uploaded_document(
+        query=query,
+        top_k=20
+    )
+
+
+@app.get("/collection-info")
+def get_collection_info():
+
+    return collection_info()

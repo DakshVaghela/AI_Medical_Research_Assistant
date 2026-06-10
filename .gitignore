@@ -11,5 +11,7 @@ node_modules/
 data/raw_docs/*
 data/processed_docs/*
 data/embeddings/*
-
+data/qdrant/*
+data/qdrant/collections/pubmed_documents
+data/qdrant/points/*
 *.pdf

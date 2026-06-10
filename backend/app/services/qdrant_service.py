@@ -63,6 +63,111 @@ def create_pubmed_collection():
             "pubmed_documents collection created"
         )
 
+def create_uploaded_document_collection():
+
+    collections = client.get_collections()
+
+    existing = [
+        c.name
+        for c in collections.collections
+    ]
+
+    if "uploaded_document" not in existing:
+
+        client.create_collection(
+            collection_name="uploaded_document",
+            vectors_config=VectorParams(
+                size=768,
+                distance=Distance.COSINE
+            )
+        )
+
+        print(
+            "uploaded_document collection created"
+        )
+
+def clear_uploaded_document_collection():
+
+    try:
+
+        client.delete_collection(
+            collection_name="uploaded_document"
+        )
+
+    except Exception:
+        pass
+
+    create_uploaded_document_collection()
+
+    print(
+        "uploaded_document cleared"
+    )
+
+def store_uploaded_document_embeddings(
+    embeddings,
+    source_file
+):
+
+    points = []
+
+    for item in embeddings:
+
+        point_id = int(
+            hashlib.md5(
+                f"{source_file}_{item['chunk_id']}".encode()
+            ).hexdigest()[:8],
+            16
+        )
+
+        points.append(
+            PointStruct(
+                id=point_id,
+                vector=item["embedding"],
+                payload={
+                    "chunk_id": item["chunk_id"],
+                    "text": item["text"],
+                    "source_file": source_file
+                }
+            )
+        )
+
+    client.upsert(
+        collection_name="uploaded_document",
+        points=points
+    )
+
+    print(
+        f"{len(points)} uploaded chunks stored"
+    )
+
+def search_uploaded_document(
+    query: str,
+    top_k: int = 20
+):
+
+    query_vector = model.encode(
+        query,
+        normalize_embeddings=True
+    ).tolist()
+
+    response = client.query_points(
+        collection_name="uploaded_document",
+        query=query_vector,
+        limit=top_k
+    )
+
+    results = []
+
+    for point in response.points:
+
+        results.append({
+            "score": point.score,
+            "chunk_id": point.payload["chunk_id"],
+            "text": point.payload["text"],
+            "source_file": point.payload["source_file"]
+        })
+
+    return results
 
 def search_qdrant(
     query: str,
