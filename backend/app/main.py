@@ -74,41 +74,40 @@ async def upload_document(
 async def chat_document(
     query: str
 ):
-
     return chat_with_document(
         query=query
     )
 
 
-@app.get("/pubmed-chat")
-def pubmed_chat(
-    query: str
-):
+# @app.get("/pubmed-chat")
+# def pubmed_chat(
+#     query: str
+# ):
 
-    return chat_with_pubmed(
-        query=query
-    )
+#     return chat_with_pubmed(
+#         query=query
+#     )
 
 
-@app.get("/debug-search")
-def debug_search(
-    query: str
-):
+# @app.get("/debug-search")
+# def debug_search(
+#     query: str
+# ):
 
-    return search_uploaded_document(
-        query=query,
-        top_k=20
-    )
+#     return search_uploaded_document(
+#         query=query,
+#         top_k=20
+#     )
 
-@app.get("/evaluate-document")
-def evaluate_document():
+# @app.get("/evaluate-document")
+# def evaluate_document():
 
-    return evaluate_document_rag()
+#     return evaluate_document_rag()
 
-@app.get("/evaluate-retrieval")
-def retrieval_eval():
+# @app.get("/evaluate-retrieval")
+# def retrieval_eval():
 
-    return evaluate_retrieval()
+#     return evaluate_retrieval()
 
 @app.get("/collection-info")
 def get_collection_info():
