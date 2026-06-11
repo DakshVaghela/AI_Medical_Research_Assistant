@@ -1,0 +1,42 @@
+[
+  {
+    "question": "What are the types of diabetes?",
+    "expected_chunks": [3,4,5]
+  },
+  {
+    "question": "What causes Type 1 diabetes?",
+    "expected_chunks": [4]
+  },
+  {
+    "question": "What is gestational diabetes?",
+    "expected_chunks": [9]
+  },
+  {
+    "question": "What is Type 2 diabetes?",
+    "expected_chunks": [5]
+  },
+  {
+    "question": "What are symptoms of diabetes?",
+    "expected_chunks": [11]
+  },
+  {
+    "question": "What are risk factors for Type 2 diabetes?",
+    "expected_chunks": [7]
+  },
+  {
+    "question": "How is diabetes diagnosed?",
+    "expected_chunks": [12]
+  },
+  {
+    "question": "What complications can diabetes cause?",
+    "expected_chunks": [15]
+  },
+  {
+    "question": "How common is gestational diabetes?",
+    "expected_chunks": [9]
+  },
+  {
+    "question": "Can gestational diabetes lead to Type 2 diabetes?",
+    "expected_chunks": [9]
+  }
+]

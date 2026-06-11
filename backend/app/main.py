@@ -7,7 +7,9 @@ from app.services.evaluation_service import (
 from app.services.document_indexing_service import (
     index_document
 )
-
+from app.services.retrieval_evaluation_service import (
+    evaluate_retrieval
+)
 from app.services.document_chat_service import (
     chat_with_document
 )
@@ -102,6 +104,11 @@ def debug_search(
 def evaluate_document():
 
     return evaluate_document_rag()
+
+@app.get("/evaluate-retrieval")
+def retrieval_eval():
+
+    return evaluate_retrieval()
 
 @app.get("/collection-info")
 def get_collection_info():

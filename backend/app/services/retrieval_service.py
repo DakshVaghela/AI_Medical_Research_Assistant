@@ -49,23 +49,71 @@
 #             )
 
 #     return unique_chunks
-from app.services.qdrant_service import search_qdrant
-from app.services.reranker_service import rerank_results
-from app.services.context_expansion_service import expand_neighbor_chunks
+# from app.services.qdrant_service import search_qdrant
+# from app.services.reranker_service import rerank_results
+# from app.services.context_expansion_service import expand_neighbor_chunks
+
+
+# def retrieve_context(
+#     query: str,
+#     all_chunks: list
+# ):
+
+#     retrieved_chunks = search_qdrant(
+#         query=query,
+#         top_k=50
+#     )
+#     print("\nQDRANT RESULTS\n")
+
+#     for chunk in retrieved_chunks:
+#         print(
+#             chunk["chunk_id"],
+#             chunk["score"]
+#         )
+
+#     reranked_chunks = rerank_results(
+#         query=query,
+#         retrieved_chunks=retrieved_chunks,
+#         top_k=10
+#     )
+
+#     print("\nRERANKED CHUNKS\n")
+
+#     for chunk in reranked_chunks:
+#         print(
+#             chunk["chunk_id"],
+#             chunk["rerank_score"]
+#         )
+
+#     expanded_chunks = expand_neighbor_chunks(
+#         reranked_chunks,
+#         all_chunks
+#     )
+
+#     return expanded_chunks
+
+from app.services.qdrant_service import (
+    search_uploaded_document
+)
+
+from app.services.reranker_service import (
+    rerank_results
+)
 
 
 def retrieve_context(
-    query: str,
-    all_chunks: list
+    query: str
 ):
 
-    retrieved_chunks = search_qdrant(
+    retrieved_chunks = search_uploaded_document(
         query=query,
-        top_k=50
+        top_k=20
     )
+
     print("\nQDRANT RESULTS\n")
 
     for chunk in retrieved_chunks:
+
         print(
             chunk["chunk_id"],
             chunk["score"]
@@ -74,20 +122,36 @@ def retrieve_context(
     reranked_chunks = rerank_results(
         query=query,
         retrieved_chunks=retrieved_chunks,
-        top_k=10
+        top_k=5
     )
 
     print("\nRERANKED CHUNKS\n")
 
     for chunk in reranked_chunks:
+
         print(
             chunk["chunk_id"],
             chunk["rerank_score"]
         )
 
-    expanded_chunks = expand_neighbor_chunks(
-        reranked_chunks,
-        all_chunks
-    )
+    unique_chunks = []
+    seen = set()
 
-    return expanded_chunks
+    for chunk in reranked_chunks:
+
+        key = (
+            chunk["chunk_id"],
+            chunk["source_file"]
+        )
+
+        if key not in seen:
+
+            unique_chunks.append(
+                chunk
+            )
+
+            seen.add(
+                key
+            )
+
+    return unique_chunks
