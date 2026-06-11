@@ -1,7 +1,9 @@
 from fastapi import FastAPI, UploadFile, File
 import shutil
 import os
-
+from app.services.evaluation_service import (
+    evaluate_document_rag
+)
 from app.services.document_indexing_service import (
     index_document
 )
@@ -96,6 +98,10 @@ def debug_search(
         top_k=20
     )
 
+@app.get("/evaluate-document")
+def evaluate_document():
+
+    return evaluate_document_rag()
 
 @app.get("/collection-info")
 def get_collection_info():

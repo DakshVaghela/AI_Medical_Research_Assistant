@@ -1,0 +1,27 @@
+[
+  {
+    "question": "What are the types of diabetes?",
+    "expected_answer":
+    "Type 1 diabetes, Type 2 diabetes, and Gestational diabetes."
+  },
+  {
+    "question": "What causes Type 1 diabetes?",
+    "expected_answer":
+    "Scientists believe genetic and environmental factors are involved."
+  },
+  {
+    "question": "What is gestational diabetes?",
+    "expected_answer":
+    "Diabetes first diagnosed during pregnancy."
+  },
+  {
+    "question": "Who is at risk of Type 2 diabetes?",
+    "expected_answer":
+    "People who are overweight, have a family history of diabetes, and are physically inactive."
+  },
+  {
+    "question": "Does gestational diabetes disappear after pregnancy?",
+    "expected_answer":
+    "Yes, gestational diabetes usually disappears after pregnancy."
+  }
+]
