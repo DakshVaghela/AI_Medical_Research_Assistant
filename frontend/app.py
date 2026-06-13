@@ -582,6 +582,15 @@ st.set_page_config(
 # --------------------------------------------------
 # Styling
 # --------------------------------------------------
+st.markdown("""
+<style>
+
+[data-testid="stChatMessage"] {
+    font-size:18px;
+}
+
+</style>
+""", unsafe_allow_html=True)
 
 st.markdown("""
 <style>
@@ -625,7 +634,7 @@ html, body, [class*="css"]{
     border-right:1px solid #141d2e;
 }
 
-[data-testid="stSidebar"] h3{
+[data-testid="stSidebar"] h1{
     font-family:'Space Grotesk', sans-serif;
     font-weight:600;
     letter-spacing:0.06em;
@@ -634,6 +643,7 @@ html, body, [class*="css"]{
     color:#94A3B8;
     margin-top:1.5rem;
     margin-bottom:0.6rem;
+    text-decoration:underline 1px solid #1E293B;
 }
 
 /* Radio buttons -> segmented pill control */
@@ -914,41 +924,71 @@ with st.sidebar:
     # =========================
 
     st.markdown("""
-<div style="
-background:linear-gradient(135deg, rgba(6,182,212,0.12), rgba(139,92,246,0.12));
-padding:22px 18px;
-border-radius:18px;
-border:1px solid #1e293b;
-text-align:center;
-">
-
-<div style="font-size:2rem; line-height:1;">🛰️</div>
-
-<h2 style="
-margin:8px 0 0 0;
-font-family:'Space Grotesk', sans-serif;
-font-weight:700;
-letter-spacing:-0.01em;
-background:linear-gradient(135deg, #06B6D4, #8B5CF6);
--webkit-background-clip:text;
-background-clip:text;
--webkit-text-fill-color:transparent;
-">
-DocIntel
-</h2>
-
-<p style="
-color:#94A3B8;
-margin-top:6px;
-font-size:0.8rem;
-letter-spacing:0.04em;
-text-transform:uppercase;
-">
-AI Document Intelligence
-</p>
-
-</div>
-""", unsafe_allow_html=True)
+        <div style="
+        position:relative;
+        background:linear-gradient(135deg, rgba(6,182,212,0.10), rgba(139,92,246,0.10));
+        padding:14px 16px;
+        border-radius:14px;
+        border:1px solid #1e293b;
+        display:flex;
+        align-items:center;
+        gap:12px;
+        overflow:hidden;
+        ">
+        
+        <div style="
+        position:absolute;
+        inset:0;
+        background:linear-gradient(135deg, transparent 40%, rgba(6,182,212,0.06) 50%, transparent 60%);
+        "></div>
+        
+        <div style="
+        width:38px;
+        height:38px;
+        min-width:38px;
+        border-radius:10px;
+        background:linear-gradient(135deg, #06B6D4, #8B5CF6);
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        font-size:1.1rem;
+        box-shadow:0 0 18px -4px rgba(6,182,212,0.6);
+        position:relative;
+        z-index:1;
+        ">
+        🛰️
+        </div>
+        
+        <div style="position:relative; z-index:1; text-align:left; line-height:1.25;">
+        
+        <div style="
+        font-family:'Space Grotesk', sans-serif;
+        font-weight:700;
+        font-size:1.05rem;
+        letter-spacing:-0.01em;
+        background:linear-gradient(135deg, #06B6D4, #8B5CF6);
+        -webkit-background-clip:text;
+        background-clip:text;
+        -webkit-text-fill-color:transparent;
+        ">
+        DocIntel.AI
+        </div>
+        
+        <div style="
+        color:#64748b;
+        font-size:0.65rem;
+        letter-spacing:0.12em;
+        text-transform:uppercase;
+        font-family:'JetBrains Mono', monospace;
+        margin-top:1px;
+        ">
+        Document Intelligence
+        </div>
+        
+        </div>
+        
+        </div>
+        """, unsafe_allow_html=True)
 
     # =========================
     # Mode Selection
@@ -1439,7 +1479,18 @@ if question:
 
     with st.chat_message("assistant"):
 
-        st.markdown(answer)
+        st.markdown(
+            f"""
+            <div style="
+            font-size:18px;
+            line-height:1.8;
+            color:white;
+            ">
+            {answer}
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
 
         render_sources(
             sources
