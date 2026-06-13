@@ -79,14 +79,14 @@ async def chat_document(
     )
 
 
-# @app.get("/pubmed-chat")
-# def pubmed_chat(
-#     query: str
-# ):
+@app.get("/pubmed-chat")
+def pubmed_chat(
+    query: str
+):
 
-#     return chat_with_pubmed(
-#         query=query
-#     )
+    return chat_with_pubmed(
+        query=query
+    )
 
 
 # @app.get("/debug-search")

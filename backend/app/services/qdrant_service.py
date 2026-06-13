@@ -312,7 +312,7 @@ def search_pubmed_qdrant(
 def collection_info():
 
     return client.get_collection(
-        "documents"
+        "uploaded_document"
     )
 
 
