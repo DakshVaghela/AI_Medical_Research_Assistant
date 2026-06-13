@@ -126,6 +126,7 @@ def store_uploaded_document_embeddings(
                 payload={
                     "chunk_id": item["chunk_id"],
                     "text": item["text"],
+                    "page": item["page"],
                     "source_file": source_file
                 }
             )
@@ -159,12 +160,12 @@ def search_uploaded_document(
     results = []
 
     for point in response.points:
-
         results.append({
             "score": point.score,
             "chunk_id": point.payload["chunk_id"],
             "text": point.payload["text"],
-            "source_file": point.payload["source_file"]
+            "source_file": point.payload["source_file"],
+            "page": point.payload.get("page")
         })
 
     return results
@@ -222,6 +223,7 @@ def store_embeddings(
                 payload={
                     "chunk_id": item["chunk_id"],
                     "text": item["text"],
+                    "page": item["page"],
                     "source_file": source_file,
                     "character_count": item["character_count"]
                 }
@@ -302,6 +304,7 @@ def search_pubmed_qdrant(
             "score": point.score,
             "pmid": point.payload["pmid"],
             "title": point.payload["title"],
+            "page": point.payload.get("page"),
             "journal": point.payload["journal"],
             "year": point.payload["year"],
             "text": point.payload["text"]

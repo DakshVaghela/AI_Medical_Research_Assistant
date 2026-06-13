@@ -861,6 +861,7 @@ def render_sources(sources):
 
                     <span style="font-size:1.1em;">📄</span>
                     <b style="color:#F8FAFC;">{source['source_file']}</b>
+                    <b style="color:#F8FAFC;">📍Page: {source.get('page','N/A')}</b>
 
                     <div style="
                     margin-top:4px;

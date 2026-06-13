@@ -17,7 +17,7 @@ def generate_embeddings(chunks):
 
         embeddings.append({
             "chunk_id": chunk["chunk_id"],
-            # "page_number": chunk["page_number"],
+            "page": chunk["page"],
             "character_count": chunk["character_count"],
             "text": chunk["text"],
             "embedding": vector.tolist()

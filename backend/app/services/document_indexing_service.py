@@ -29,7 +29,7 @@ def index_document(
         full_text += page["text"] + "\n"
 
     chunks = create_chunks(
-        full_text
+        pages
     )
 
     embeddings = generate_embeddings(
