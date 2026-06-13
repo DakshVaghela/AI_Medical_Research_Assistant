@@ -1,8 +1,8 @@
-from app.services.retrieval_service import (
+from app.services.retrieval.retrieval_service import (
     retrieve_context
 )
 
-from app.services.rag_service import (
+from app.services.generation.rag_service import (
     generate_rag_answer
 )
 

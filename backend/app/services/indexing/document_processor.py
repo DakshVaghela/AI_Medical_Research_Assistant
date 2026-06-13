@@ -1,6 +1,6 @@
 import fitz
 
-from app.services.pdf_service import extract_text_from_pdf
+from app.services.indexing.pdf_service import extract_text_from_pdf
 
 
 def is_scanned_pdf(pdf_path: str):

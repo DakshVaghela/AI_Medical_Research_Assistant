@@ -1,5 +1,5 @@
 import numpy as np
-from app.services.embedding_service import model
+from app.services.indexing.embedding_service import model
 
 
 def cosine_similarity(vec1, vec2):

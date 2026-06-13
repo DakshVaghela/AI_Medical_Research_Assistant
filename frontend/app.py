@@ -634,16 +634,44 @@ html, body, [class*="css"]{
     border-right:1px solid #141d2e;
 }
 
-[data-testid="stSidebar"] h1{
+[data-testid="stSidebar"],
+[data-testid="stSidebar"] [data-testid="stSidebarContent"],
+[data-testid="stSidebar"] [data-testid="stSidebarUserContent"],
+[data-testid="stSidebar"] [data-testid="stVerticalBlock"],
+[data-testid="stSidebar"] [data-testid="stVerticalBlock"] > div:first-child {
+    padding-top: 0px !important;
+    margin-top: 0px !important;
+}
+
+/* Compact Vertical Blocks in Sidebar */
+[data-testid="stSidebar"] [data-testid="stVerticalBlock"] {
+    gap: 0.5rem !important;
+}
+[data-testid="stSidebar"] [data-testid="stVerticalBlock"] > div {
+    padding-top: 0.15rem !important;
+    padding-bottom: 0.15rem !important;
+}
+
+[data-testid="stSidebar"] h1,
+[data-testid="stSidebar"] h2,
+[data-testid="stSidebar"] h3,
+[data-testid="stSidebar"] h4 {
     font-family:'Space Grotesk', sans-serif;
     font-weight:600;
-    letter-spacing:0.06em;
+    letter-spacing:0.04em;
+    color:#94A3B8;
+    margin-top:0.4rem !important;
+    margin-bottom:0.15rem !important;
+}
+
+[data-testid="stSidebar"] h1 {
     text-transform:uppercase;
     font-size:0.75rem;
-    color:#94A3B8;
-    margin-top:1.5rem;
-    margin-bottom:0.6rem;
     text-decoration:underline 1px solid #1E293B;
+}
+
+[data-testid="stSidebar"] h3 {
+    font-size:1.15rem !important;
 }
 
 /* Radio buttons -> segmented pill control */
@@ -651,13 +679,14 @@ html, body, [class*="css"]{
     background:#0B1220;
     border:1px solid #1E293B;
     border-radius:14px;
-    padding:6px;
-    gap:4px;
+    padding:2px;
+    gap:2px;
 }
 
 [data-testid="stSidebar"] [role="radiogroup"] label{
     border-radius:10px;
-    padding:8px 10px;
+    padding:4px 4px;
+    margin-top:0px;
     transition:all 0.15s ease;
     font-family:'Space Grotesk', sans-serif;
     font-weight:500;
@@ -670,19 +699,54 @@ html, body, [class*="css"]{
 /* Divider */
 [data-testid="stSidebar"] hr{
     border-color:#141d2e;
-    margin:1.4rem 0;
+    margin:0.4rem 0 !important;
 }
 
-/* File uploader */
+/* File uploader dropzone */
 [data-testid="stFileUploaderDropzone"]{
-    background:#0B1220 !important;
-    border:1.5px dashed #2a3a52 !important;
-    border-radius:14px !important;
-    transition:border-color 0.2s ease;
+    background: rgba(11, 18, 32, 0.5) !important;
+    border: 1.5px dashed rgba(6, 182, 212, 0.35) !important;
+    border-radius: 12px !important;
+    transition: all 0.25s ease !important;
+    padding: 8px 10px !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35) !important;
+}
+
+[data-testid="stFileUploaderDropzone"] div {
+    font-size: 0.8rem !important;
+    color: #94A3B8 !important;
+}
+
+[data-testid="stFileUploaderDropzone"] small {
+    color: #64748b !important;
+    font-size: 0.7rem !important;
+}
+
+/* Make the file uploader button match the gradient theme */
+[data-testid="stFileUploaderDropzone"] button {
+    background: linear-gradient(135deg, #06B6D4, #8B5CF6) !important;
+    color: #F8FAFC !important;
+    border: none !important;
+    border-radius: 8px !important;
+    font-family: 'Space Grotesk', sans-serif !important;
+    font-weight: 600 !important;
+    padding: 5px 12px !important;
+    font-size: 0.75rem !important;
+    box-shadow: 0 4px 12px rgba(6, 182, 212, 0.3) !important;
+    transition: all 0.2s ease !important;
+    margin-top: 4px !important;
+}
+
+[data-testid="stFileUploaderDropzone"] button:hover {
+    filter: brightness(1.15) !important;
+    box-shadow: 0 4px 16px rgba(6, 182, 212, 0.5) !important;
+    transform: translateY(-1px) !important;
 }
 
 [data-testid="stFileUploaderDropzone"]:hover{
-    border-color:#06B6D4 !important;
+    border-color: #06B6D4 !important;
+    background: rgba(11, 18, 32, 0.75) !important;
+    box-shadow: 0 0 15px rgba(6, 182, 212, 0.15) !important;
 }
 
 /* ============================================
@@ -713,7 +777,7 @@ html, body, [class*="css"]{
 [data-testid="stMetric"]{
     background:#0B1220;
     border:1px solid #1E293B;
-    padding:14px 16px;
+    padding:6px 10px;
     border-radius:14px;
 }
 
@@ -760,15 +824,27 @@ html, body, [class*="css"]{
    CHAT INPUT
    ============================================ */
 
+[data-testid="stBottom"],
+[data-testid="stBottom"] > div {
+    background: transparent !important;
+    background-color: transparent !important;
+    border: none !important;
+}
+
 [data-testid="stChatInput"]{
     justify-content:center;
     position:sticky;
     margin: 5px auto;
     width:50%;
     display:center;
-    border-radius:18px;
+    border-radius:28px;
     border:1px solid #1E293B;
     background:#0B1220;
+    overflow: hidden !important;
+}
+
+[data-testid="stChatInput"] textarea {
+    border-radius: 28px !important;
 }
 
 [data-testid="stChatInput"]:focus-within{
@@ -928,12 +1004,12 @@ with st.sidebar:
         <div style="
         position:relative;
         background:linear-gradient(135deg, rgba(6,182,212,0.10), rgba(139,92,246,0.10));
-        padding:14px 16px;
-        border-radius:14px;
+        padding:8px 12px;
+        border-radius:12px;
         border:1px solid #1e293b;
         display:flex;
         align-items:center;
-        gap:12px;
+        gap:8px;
         overflow:hidden;
         ">
         
@@ -944,28 +1020,28 @@ with st.sidebar:
         "></div>
         
         <div style="
-        width:38px;
-        height:38px;
-        min-width:38px;
-        border-radius:10px;
+        width:32px;
+        height:32px;
+        min-width:32px;
+        border-radius:8px;
         background:linear-gradient(135deg, #06B6D4, #8B5CF6);
         display:flex;
         align-items:center;
         justify-content:center;
-        font-size:1.1rem;
-        box-shadow:0 0 18px -4px rgba(6,182,212,0.6);
+        font-size:1rem;
+        box-shadow:0 0 14px -4px rgba(6,182,212,0.6);
         position:relative;
         z-index:1;
         ">
         🛰️
         </div>
         
-        <div style="position:relative; z-index:1; text-align:left; line-height:1.25;">
+        <div style="position:relative; z-index:1; text-align:left; line-height:1.2;">
         
         <div style="
         font-family:'Space Grotesk', sans-serif;
         font-weight:700;
-        font-size:1.05rem;
+        font-size:0.95rem;
         letter-spacing:-0.01em;
         background:linear-gradient(135deg, #06B6D4, #8B5CF6);
         -webkit-background-clip:text;
@@ -977,8 +1053,8 @@ with st.sidebar:
         
         <div style="
         color:#64748b;
-        font-size:0.65rem;
-        letter-spacing:0.12em;
+        font-size:0.6rem;
+        letter-spacing:0.1em;
         text-transform:uppercase;
         font-family:'JetBrains Mono', monospace;
         margin-top:1px;
@@ -998,12 +1074,13 @@ with st.sidebar:
     st.markdown("### 🧠 Knowledge Source")
 
     chat_mode = st.radio(
-        "",
+        "Knowledge Source",
         [
             "📄 Document RAG",
             "🧬 PubMed Research"
-        ]
-    )
+        ],
+        label_visibility="collapsed"
+        )
 
     st.divider()
 
@@ -1029,11 +1106,11 @@ with st.sidebar:
                 <div style="
                 background:#111827;
                 border:1px solid #1e293b;
-                padding:12px 14px;
-                border-radius:12px;
-                margin-bottom:10px;
+                padding:6px 10px;
+                border-radius:10px;
+                margin-bottom:6px;
                 color:#F8FAFC;
-                font-size:0.9rem;
+                font-size:0.85rem;
                 ">
                 📄 {uploaded_file.name}
                 </div>
@@ -1080,17 +1157,17 @@ with st.sidebar:
                 <div style="
                 background:linear-gradient(135deg, rgba(16,185,129,0.10), rgba(16,185,129,0.02));
                 border:1px solid rgba(16,185,129,0.35);
-                padding:12px 14px;
-                border-radius:12px;
-                margin-bottom:10px;
+                padding:6px 10px;
+                border-radius:10px;
+                margin-bottom:6px;
                 color:#F8FAFC;
-                font-size:0.9rem;
+                font-size:0.85rem;
                 display:flex;
                 align-items:center;
                 gap:8px;
                 ">
                 <span style="
-                width:8px; height:8px; border-radius:50%;
+                width:6px; height:6px; border-radius:50%;
                 background:#10B981;
                 animation:pulse-dot 2s infinite;
                 display:inline-block;
@@ -1111,25 +1188,25 @@ with st.sidebar:
         <div style="
         background:linear-gradient(135deg, rgba(139,92,246,0.12), rgba(139,92,246,0.02));
         border:1px solid rgba(139,92,246,0.35);
-        padding:14px 16px;
-        border-radius:14px;
-        margin-bottom:10px;
+        padding:8px 10px;
+        border-radius:10px;
+        margin-bottom:6px;
         color:#F8FAFC;
         ">
 
-        <div style="font-size:1.4rem;">🧬</div>
-
+        <div style="font-size:1.1rem; display:inline-block;">🧬</div>
         <div style="
         font-family:'Space Grotesk', sans-serif;
         font-weight:600;
-        margin-top:6px;
+        margin-top:2px;
+        font-size:0.9rem;
+        display:inline-block;
         ">
         PubMed Research Mode
         </div>
 
-        <div style="color:#94A3B8; font-size:0.85rem; margin-top:6px; line-height:1.5;">
-        Searches indexed medical research papers.
-        No document upload required.
+        <div style="color:#94A3B8; font-size:0.8rem; margin-top:4px; line-height:1.4;">
+        Searches indexed medical research papers. No document upload required.
         </div>
 
         </div>
@@ -1156,13 +1233,13 @@ with st.sidebar:
         <div style="
         display:flex;
         align-items:center;
-        gap:10px;
-        padding:8px 12px;
-        border-radius:10px;
+        gap:8px;
+        padding:4px 8px;
+        border-radius:8px;
         background:#0B1220;
         border:1px solid #1E293B;
-        margin-bottom:6px;
-        font-size:0.85rem;
+        margin-bottom:4px;
+        font-size:0.8rem;
         color:#F8FAFC;
         ">
         <span style="
@@ -1191,21 +1268,21 @@ with st.sidebar:
         <div style="
         background:linear-gradient(135deg, rgba(16,185,129,0.16), rgba(16,185,129,0.04));
         border:1px solid rgba(16,185,129,0.4);
-        padding:12px;
-        border-radius:12px;
+        padding:6px;
+        border-radius:10px;
         color:#F8FAFC;
         text-align:center;
-        margin-bottom:14px;
+        margin-bottom:8px;
         font-family:'Space Grotesk', sans-serif;
         font-weight:600;
-        font-size:0.85rem;
+        font-size:0.8rem;
         display:flex;
         align-items:center;
         justify-content:center;
-        gap:8px;
+        gap:6px;
         ">
         <span style="
-        width:8px; height:8px; border-radius:50%;
+        width:6px; height:6px; border-radius:50%;
         background:#10B981;
         animation:pulse-dot 2s infinite;
         display:inline-block;
@@ -1238,21 +1315,21 @@ with st.sidebar:
         <div style="
         background:linear-gradient(135deg, rgba(239,68,68,0.16), rgba(239,68,68,0.04));
         border:1px solid rgba(239,68,68,0.4);
-        padding:12px;
-        border-radius:12px;
+        padding:6px;
+        border-radius:10px;
         color:#F8FAFC;
         text-align:center;
-        margin-bottom:14px;
+        margin-bottom:8px;
         font-family:'Space Grotesk', sans-serif;
         font-weight:600;
-        font-size:0.85rem;
+        font-size:0.8rem;
         display:flex;
         align-items:center;
         justify-content:center;
-        gap:8px;
+        gap:6px;
         ">
         <span style="
-        width:8px; height:8px; border-radius:50%;
+        width:6px; height:6px; border-radius:50%;
         background:#EF4444;
         display:inline-block;
         "></span>

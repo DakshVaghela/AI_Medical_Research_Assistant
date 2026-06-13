@@ -1,8 +1,8 @@
-from app.services.pubmed_retrieval_service import (
+from app.services.retrieval.pubmed_retrieval_service import (
     retrieve_pubmed_context
 )
 
-from app.services.pubmed_rag_service import (
+from app.services.generation.pubmed_rag_service import (
     generate_pubmed_answer
 )
 

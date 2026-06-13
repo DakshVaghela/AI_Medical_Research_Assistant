@@ -1,6 +1,6 @@
-from app.services.qdrant_service import search_qdrant
-from app.services.reranker_service import rerank_results
-from app.services.context_expansion_service import (
+from app.services.database.qdrant_service import search_qdrant
+from app.services.retrieval.reranker_service import rerank_results
+from app.services.retrieval.context_expansion_service import (
     expand_neighbor_chunks
 )
 

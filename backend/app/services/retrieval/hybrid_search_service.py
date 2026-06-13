@@ -1,5 +1,5 @@
 from rank_bm25 import BM25Okapi
-from app.services.search_service import semantic_search
+from app.services.retrieval.search_service import semantic_search
 import re
 STOP_WORDS = {
     "what",

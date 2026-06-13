@@ -1,4 +1,4 @@
-from app.services.llm_service import (
+from app.services.generation.llm_service import (
     ask_llama
 )
 

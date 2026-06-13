@@ -1,4 +1,4 @@
-from app.services.llm_service import ask_llama
+from app.services.generation.llm_service import ask_llama
 
 
 def generate_rag_answer(
