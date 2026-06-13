@@ -1,8 +1,8 @@
-from app.services.qdrant_service import (
+from app.services.database.qdrant_service import (
     search_pubmed_qdrant
 )
 
-from app.services.reranker_service import (
+from app.services.retrieval.reranker_service import (
     rerank_results
 )
 

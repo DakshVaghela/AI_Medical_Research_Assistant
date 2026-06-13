@@ -1,21 +1,21 @@
-from app.services.pubmed_service import (
+from app.services.retrieval.pubmed_service import (
     search_pubmed,
     fetch_pubmed_details
 )
 
-from app.services.pubmed_parser_service import (
+from app.services.indexing.pubmed_parser_service import (
     parse_pubmed_xml
 )
 
-from app.services.document_chunking_service import (
+from app.services.indexing.document_chunking_service import (
     create_chunks
 )
 
-from app.services.embedding_service import (
+from app.services.indexing.embedding_service import (
     generate_embeddings
 )
 
-from app.services.qdrant_service import (
+from app.services.database.qdrant_service import (
     store_pubmed_embeddings
 )
 

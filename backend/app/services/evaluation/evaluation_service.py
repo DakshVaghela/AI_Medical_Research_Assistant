@@ -1,6 +1,6 @@
 import json
 
-from app.services.document_chat_service import (
+from app.services.generation.document_chat_service import (
     chat_with_document
 )
 

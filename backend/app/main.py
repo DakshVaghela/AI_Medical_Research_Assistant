@@ -1,24 +1,24 @@
 from fastapi import FastAPI, UploadFile, File
 import shutil
 import os
-from app.services.evaluation_service import (
+from app.services.evaluation.evaluation_service import (
     evaluate_document_rag
 )
-from app.services.document_indexing_service import (
+from app.services.indexing.document_indexing_service import (
     index_document
 )
-from app.services.retrieval_evaluation_service import (
+from app.services.evaluation.retrieval_evaluation_service import (
     evaluate_retrieval
 )
-from app.services.document_chat_service import (
+from app.services.generation.document_chat_service import (
     chat_with_document
 )
 
-from app.services.pubmed_chat_service import (
+from app.services.generation.pubmed_chat_service import (
     chat_with_pubmed
 )
 
-from app.services.qdrant_service import (
+from app.services.database.qdrant_service import (
     search_uploaded_document,
     collection_info
 )

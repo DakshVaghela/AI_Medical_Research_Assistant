@@ -5,7 +5,7 @@ from qdrant_client.models import (
     Distance
 )
 
-from app.services.embedding_service import model
+from app.services.indexing.embedding_service import model
 
 import hashlib
 

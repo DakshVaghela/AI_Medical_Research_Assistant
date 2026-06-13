@@ -1,11 +1,11 @@
-from app.services.pdf_service import extract_text_from_pdf
-from app.services.document_chunking_service import create_chunks
-from app.services.embedding_service import generate_embeddings
-from app.services.qdrant_service import (
+from app.services.indexing.pdf_service import extract_text_from_pdf
+from app.services.indexing.document_chunking_service import create_chunks
+from app.services.indexing.embedding_service import generate_embeddings
+from app.services.database.qdrant_service import (
     clear_uploaded_document_collection,
     store_uploaded_document_embeddings
 )
-from app.services.qdrant_service import (
+from app.services.database.qdrant_service import (
     clear_uploaded_document_collection
 )
 

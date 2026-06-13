@@ -1,6 +1,6 @@
 import json
 
-from app.services.retrieval_service import (
+from app.services.retrieval.retrieval_service import (
     retrieve_context
 )
 
